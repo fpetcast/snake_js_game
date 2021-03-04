@@ -39,8 +39,11 @@ export function expandSnake(amount) {
 }
 
 //i check the position of the apple and the segments of snake body
-export function onSnake(position) {
-    return snakeBody.some(segments => {
+//i let the option ignored head cause i use this function to check intersection
+//of the head with the body of the snake
+export function onSnake(position, {ignoredHead = false} = {}) {
+    return snakeBody.some((segments, index) => {
+        if (ignoredHead && index === 0) return false
         return equalPos(segments, position)
     })
 }
@@ -58,3 +61,13 @@ function addSegments() {
     newSegments=0
 }
 
+export function hitTheWall() {
+    return (
+        snakeBody[0].x < 1 || snakeBody[0].x > 21 || snakeBody[0].y < 1 || snakeBody[0].y > 21
+    )
+}
+
+//we need to avoid to loop this control on the head itself
+export function snakeIntersection() {
+    return onSnake(snakeBody[0], {ignoredHead:true})
+}

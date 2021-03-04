@@ -39,7 +39,7 @@ aside h1 {
 #game-board {
   background-color: var(--bg);
   width: 100vmin;
-  height: 100vmin;
+  height: 90vmin;
   display: grid;
   grid-template-rows: repeat(21, 1fr);
   grid-template-columns: repeat(21, 1fr);

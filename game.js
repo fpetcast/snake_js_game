@@ -1,14 +1,18 @@
 //imported modules
 
-import {update as updateSnake, draw as drawSnake, snakeSpeed, gameBoard} from './snake.js';
+import {update as updateSnake, draw as drawSnake, snakeSpeed, gameBoard, hitTheWall, snakeIntersection} from './snake.js';
 import { update as updateApple, draw as drawApple } from "./apple.js";
 
 //variables
 let lastRenderTime=0;
+let gameOver = false;
 export let record = document.getElementById("last-score");
 //my game-loop
 
 function main(currentTime) {
+    if (gameOver) {
+        return alert("your snake lost the sneakers, retry!");
+    }
     //request to render the next frame
     window.requestAnimationFrame(main);
     //how much time takes to a frame to be rendered (very little)
@@ -30,7 +34,7 @@ window.onload = yourRecord();
 function update() {
     updateSnake();
     updateApple();
-    // checkFailure();
+    checkFailure();
 }
 
 function draw() {
@@ -46,3 +50,7 @@ function yourRecord() {
     record.innerHTML = lastRecord[0];
 }
 
+//game failure
+function checkFailure() {
+    gameOver = hitTheWall() || snakeIntersection()
+}
