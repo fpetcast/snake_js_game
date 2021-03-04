@@ -11,7 +11,10 @@ export let record = document.getElementById("last-score");
 
 function main(currentTime) {
     if (gameOver) {
-        return alert("your snake lost the sneakers, retry!");
+        if (confirm("Poor little snake, you lost. Retry?")) {
+            window.location = "/";
+        }
+        return
     }
     //request to render the next frame
     window.requestAnimationFrame(main);
