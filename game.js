@@ -1,7 +1,7 @@
 //imported modules
 
 import {update as updateSnake, draw as drawSnake, snakeSpeed, gameBoard, hitTheWall, snakeIntersection} from './snake.js';
-import { update as updateApple, draw as drawApple } from "./apple.js";
+import { update as updateApple, draw as drawApple} from "./apple.js";
 
 //variables
 let lastRenderTime=0;
@@ -49,8 +49,7 @@ function draw() {
 
 //update the user record
 function yourRecord() {
-    let lastRecord = JSON.parse(localStorage.getItem("YourRecords"));
-    record.innerHTML = lastRecord[0];
+    record.innerHTML = JSON.parse(localStorage.getItem("LastRecord"));
 }
 
 //game failure

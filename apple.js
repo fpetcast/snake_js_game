@@ -5,7 +5,7 @@ let apple = getRandomApplePos()
 const EXPANSION_RATE = 1;
 let currentPoints = document.getElementById("current-points");
 let points = 0;
-let scoreRecords = [0];
+let lastRecord = 0;
 
 export function update() {
     //if the snake and the apple position match
@@ -17,10 +17,10 @@ export function update() {
         //update the current points and record
         points+=1;
         currentPoints.innerHTML = points;
-        if (scoreRecords[0]<points) {
-            scoreRecords.pop();
-            scoreRecords.push(points);
-            localStorage.setItem("YourRecords", JSON.stringify(scoreRecords))
+        localStorage.setItem("YourPoints", JSON.stringify(points))
+        if (points > JSON.parse(localStorage.getItem("LastRecord"))) {
+            lastRecord = points;
+            localStorage.setItem("LastRecord", JSON.stringify(lastRecord))
         }
     }
 }
